@@ -111,15 +111,18 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home)
         {
-
+            HomeFragment homeFragment = HomeFragment.newInstance("data1","data2");
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_frame,homeFragment,homeFragment.getTag()).commit();
         }
         else if (id == R.id.nav_courts)
         {
             MapFragment mapFragment = new MapFragment();
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.content_frame,mapFragment,mapFragment.getTag()).commit();
-
-        } else if (id == R.id.nav_news) {
+        }
+        else if (id == R.id.nav_news)
+        {
 
         }
         else if (id == R.id.nav_recent_games)
