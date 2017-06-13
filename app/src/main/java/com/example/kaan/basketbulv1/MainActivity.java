@@ -1,11 +1,9 @@
 package com.example.kaan.basketbulv1;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,10 +16,9 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,GamesFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener
+        , CourtsFragment.OnFragmentInteractionListener{
 
 
     @Override
@@ -57,9 +54,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 makeToast("Prof pic Pressed");
-                ProfileFragment profileFragment = ProfileFragment.newInstance("some1","some2");
-                FragmentManager manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.content_frame,profileFragment,profileFragment.getTag()).commit();
+
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
             }
@@ -111,15 +106,15 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home)
         {
-            HomeFragment homeFragment = HomeFragment.newInstance("data1","data2");
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.content_frame,homeFragment,homeFragment.getTag()).commit();
+
         }
         else if (id == R.id.nav_courts)
         {
-            MapFragment mapFragment = new MapFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.content_frame,mapFragment,mapFragment.getTag()).commit();
+            CourtsFragment courtsFragment = CourtsFragment.newInstance("data1","data2");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_frame,courtsFragment,courtsFragment.getTag());
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
         else if (id == R.id.nav_news)
         {
@@ -127,9 +122,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_recent_games)
         {
-            GamesFragment gamesFragment = GamesFragment.newInstance("data1",5);
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.content_frame,gamesFragment,gamesFragment.getTag()).commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
