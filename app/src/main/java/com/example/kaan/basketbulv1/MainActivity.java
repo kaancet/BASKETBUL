@@ -2,6 +2,7 @@ package com.example.kaan.basketbulv1;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -18,7 +19,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
-        , CourtsFragment.OnFragmentInteractionListener{
+        , CourtsFragment.OnFragmentInteractionListener
+        , ProfileFragment.OnFragmentInteractionListener
+        , NewsFragment.OnFragmentInteractionListener{
 
 
     @Override
@@ -54,7 +57,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 makeToast("Prof pic Pressed");
-
+                ProfileFragment profileFragment = ProfileFragment.newInstance("profdata1","profdata2");
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.content_frame,profileFragment,profileFragment.getTag());
+                transaction.addToBackStack(null);
+                transaction.commit();
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
             }
@@ -106,11 +113,11 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home)
         {
-
+            //TODO: Implement home fragment transaction
         }
         else if (id == R.id.nav_courts)
         {
-            CourtsFragment courtsFragment = CourtsFragment.newInstance("data1","data2");
+            CourtsFragment courtsFragment = CourtsFragment.newInstance("courtsdata1","courtsdata2");
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.content_frame,courtsFragment,courtsFragment.getTag());
             transaction.addToBackStack(null);
@@ -118,7 +125,11 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_news)
         {
-
+            NewsFragment newsFragment = NewsFragment.newInstance("newsdata1","newsdata2");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_frame,newsFragment,newsFragment.getTag());
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
         else if (id == R.id.nav_recent_games)
         {

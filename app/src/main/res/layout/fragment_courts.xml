@@ -9,13 +9,4 @@
     tools:layout_editor_absoluteY="81dp">
 
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@mipmap/profile_pic"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="117dp"
-        android:layout_marginTop="16dp" />
 </android.support.constraint.ConstraintLayout>
